@@ -1,0 +1,200 @@
+/**  ------ Transition --------
+
+.element {
+    transition: <property> <duration> <timing-function> <delay>;
+}
+.element {
+    transition: width 400ms ease-in-out 2s;
+}
+
+// can also write the same properties with every segment
+.element {
+    transition-property: property(width);
+    transition-duration: duration(400ms);
+    -o-transition-delay: delay(2s);
+    transition-timing-function: timing-function(ease-in-out);
+}
+
+*/
+
+:root {
+    --bg-primary: goldenrod;
+    --bg-secondary: chocolate;
+    --bg-info: gray;
+    --bg-red: wheat;
+    --bg-dark: blueviolet;
+    --app-color: rgb(38, 38, 78);
+}
+
+.container {
+    display: inline-block;
+    height: 200px;
+    width: 200px;
+    border: 10px solid var(--bg-secondary);
+    border-radius: 10px;
+}
+
+.box {
+    height: 100%;
+    background: var(--bg-primary);
+    /* transition: 500ms; */
+    /* transition: width 500ms,height 400ms; */
+    /* we have to specify which property added into animations (like height, width, transform etc */
+    transition: transform 500ms;
+    /* to rotate to bottom to right */
+    transform-origin: bottom right;
+    pointer-events: none;
+}
+
+/* .box:hover {
+    width: 400px;
+    height: 400px;
+    transform: rotate(60deg);
+} */
+
+.container:hover .box {
+    transform: rotate(60deg);
+}
+
+label {
+    position: relative;
+    left: 100px;
+    top: 100px;
+}
+
+.check-large {
+    display: none;
+}
+
+.btn-large {
+    display: inline-block;
+    width: 130px;
+    height: 50px;
+    border-radius: 50px;
+    background: var(--bg-primary);
+    transition: background .5s ease;
+}
+
+.btn-large::before {
+    position: absolute;
+    content: "";
+    width: 70px;
+    height: 70px;
+    background: var(--bg-secondary);
+    top: -45px;
+    left: -5px;
+    border-radius: 40px;
+    /* transition: background .5s ease, left 0.5s ease; */
+    transition: all .5s ease;
+}
+
+.btn-large::after {
+    content: "off";
+    position: absolute;
+    width: 70px;
+    height: 70px;
+    top: -45px;
+    left: 65px;
+    line-height: 70px;
+    text-align: center;
+    color: var(--bg-dark);
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 20px;
+    transition: left .5s cubic-bezier(.75, -0.63, .36, 1);
+}
+
+.check-large:checked+.btn-large {
+    background: var(--bg-info);
+}
+
+.check-large:checked+.btn-large::before {
+    background: var(--bg-red);
+    left: 65px;
+}
+
+.check-large:checked+.btn-large::after {
+    content: "on";
+    left: 5px;
+}
+
+.check-small {
+    display: none;
+}
+
+.btn-small {
+    display: inline-block;
+    width: 125px;
+    height: 60px;
+    border-radius: 50px;
+    background: var(--bg-primary);
+    transition: background .5s ease;
+}
+
+.btn-small::before {
+    position: absolute;
+    content: "";
+    width: 50px;
+    height: 50px;
+    background: var(--bg-secondary);
+    top: -40px;
+    left: 5px;
+    border-radius: 40px;
+    /* transition: background .5s ease, left 0.5s ease; */
+    transition: all .5s ease;
+}
+
+.check-small:checked+.btn-small {
+    background: var(--bg-info);
+}
+
+.check-small:checked+.btn-small::before {
+    background: var(--bg-red);
+    left: 70px;
+}
+
+.wrapper {
+    height: 30px;
+    background: var(--bg-info);
+    border-radius: 50px;
+}
+
+.progress-bar {
+    border-radius: 50px;
+    background: var(--bg-primary);
+    width: 0%;
+    height: 100%;
+    margin-left: 1px;
+    transition: width 5s ease-in;
+}
+
+.wrapper:hover .progress-bar {
+    width: 100%;
+}
+
+.spin-wrapper {
+    background: var(--bg-info);
+    padding: 20px;
+}
+
+.spin-container {
+    display: inline-block;
+    width: 200px;
+    height: 200px;
+    border: 10px dashed var(--app-color);
+    border-radius: 50%;
+    transition: transform 10s ease-out;
+}
+
+.spin-wrapper:hover .spin-container {
+    transform: translate(1000px) rotate(360deg);
+}
+
+.wheel {
+    height: 100%;
+    text-align: center;
+    line-height: 200px;
+    text-transform: uppercase;
+    font-size: 2rem;
+    color: var(--bg-dark);
+}
