@@ -74,17 +74,265 @@
     }
 } */
 
-@keyframes expand {
+/* 
+@keyframes expand{
     0% {
         height: 600px;
         width: 600px;
     }
     50% {
-        height: 30px;
-        width: 30px;
+        height: 300px;
+        width: 300px;
     }
     100% {
-        height: 400px;
-        width: 400px;
+        height: 100px;
+        width: 100px;
+    }
+} */
+
+/**
+.element {
+    animation: <name> <duration> <timing-function> <delay> <iteration-count> <direction> <fill-mode> <play-state>
+}
+
+<timing-function> : The animation-timing-function specifies the speed curve of an animation. The speed curve defines the TIME an animation uses to change from one set of CSS styles to another. The speed curve is used to make the changes smoothly.
+
+<iteration-count> : The animation-iteration-count property specifies the number of times an animation should be played.
+
+<fill-mode> : The animation-fill-mode property specifies a style for the element when the animation is not playing (before it starts, after it ends, or both).
+
+<play-state> : The animation-play-state property specifies whether the animation is running or paused.
+*/
+
+/**
+.element {
+    animation: myAdmin 3s linear 2s infinite alternative backwards paused
+}
+*/
+
+.element {
+    animation-name: myAdmin;
+    animation-duration: 3s;
+    animation-timing-function: linear;
+    animation-delay: 2s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-fill-mode: backwards;
+    animation-play-state: paused;
+}
+
+nav {
+    padding: 50px;
+    text-align: center;
+}
+
+nav>ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: inline-block;
+    background: var(--bg-primary);
+    border-radius: 5px;
+}
+
+nav>ul>li {
+    float: left;
+    width: 150px;
+    height: 65px;
+    line-height: 65px;
+    position: relative;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--app-color);
+    cursor: pointer;
+}
+
+nav>ul>li:hover {
+    background: var(--bg-secondary);
+    border: 5px;
+}
+
+ul.drop-menu {
+    position: absolute;
+    top: 100%;
+    left: 0%;
+    width: 100%;
+    padding: 0;
+}
+
+ul.drop-menu li {
+    background: var(--bg-dark);
+    color: var(--bg-red);
+    list-style: none;
+}
+
+ul.drop-menu li:hover {
+    background: var(--bg-secondary);
+}
+
+ul.drop-menu li:last-child {
+    border-radius: 0px 0px 5px 5px;
+}
+
+ul.drop-menu li {
+    display: none;
+}
+
+li:hover>ul.drop-menu li {
+    display: block;
+    opacity: 0;
+    animation: menu 0.3s ease-in-out forwards;
+    transform-origin: top right;
+    /* transform-origin: top center; */
+}
+
+ul.drop-menu {
+    perspective: 1000px;
+}
+
+li:hover>ul.drop-menu li:nth-child(1) {
+    /* animation-duration: .3s; */
+    animation-delay: 0s;
+}
+
+li:hover>ul.drop-menu li:nth-child(2) {
+    /* animation-duration: .5s; */
+    animation-delay: 0.1s;
+}
+
+li:hover>ul.drop-menu li:nth-child(3) {
+    /* animation-duration: .7s; */
+    animation-delay: 0.2s;
+}
+
+li:hover>ul.drop-menu li:nth-child(4) {
+    /* animation-duration: .9s; */
+    animation-delay: 0.3s;
+}
+
+@keyframes menu {
+    0% {
+        opacity: 0;
+        /* transform: translateX(-30px); */
+        transform: rotate(-50deg);
+        /* transform: rotateX(-90deg); */
+    }
+    100% {
+        opacity: 1;
+        /* transform: translateX(0px); */
+        transform: rotate(0deg);
+    }
+}
+
+.spinner {
+    width: 100px;
+    height: 100px;
+    border: 5px solid var(--bg-dark);
+    border-radius: 50%;
+    position: relative;
+    margin: 150px;
+    display: inline-block;
+    animation: spin 3s linear infinite;
+}
+
+.spinner::before {
+    content: "";
+    height: 30px;
+    width: 30px;
+    background: var(--bg-primary);
+    border-radius: 50%;
+    position: absolute;
+    top: 35px;
+    left: 35px;
+}
+
+.spinner::after {
+    content: "";
+    height: 20px;
+    width: 20px;
+    background: var(--bg-info);
+    border-radius: 50%;
+    position: absolute;
+    top: 5px;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.road {
+    position: relative;
+    width: 70%;
+    border-top: 12px dotted var(--bg-secondary);
+    margin: 150px auto;
+}
+
+.pacman {
+    position: absolute;
+    animation: walk 5s linear infinite;
+}
+
+.pacman::before, .pacman::after {
+    content: "";
+    display: block;
+    height: 0;
+    width: 0;
+    position: absolute;
+    border: solid 30px var(--bg-dark);
+    border-radius: 50%;
+    top: -36px;
+}
+
+.pacman::before {
+    border-right-color: transparent;
+    border-bottom-color: transparent;
+    animation: chompTop 0.1s linear infinite alternate;
+}
+
+.pacman::after {
+    border-right-color: transparent;
+    border-top-color: transparent;
+    animation: chompBottom 0.1s linear infinite alternate;
+}
+
+@keyframes walk {
+    0% {
+        left: 0%;
+        transform: scaleX(1);
+    }
+    49% {
+        left: 100%;
+        transform: scaleX(1);
+    }
+    50% {
+        transform: scaleX(-1);
+    }
+    100% {
+        left: 0%;
+        transform: scaleX(-1);
+    }
+}
+
+@keyframes chompTop {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(40deg);
+    }
+}
+
+@keyframes chompBottom {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(-40deg);
     }
 }
