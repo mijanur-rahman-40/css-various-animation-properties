@@ -1,0 +1,42 @@
+:root {
+  --bg-primary: goldenrod;
+  --bg-secondary: chocolate;
+  --bg-info: gray;
+  --text-info: wheat;
+  --bg-dark: blueviolet;
+  --app-color: rgb(38, 38, 78);
+}
+
+body {
+  background: var(--bg-dark);
+  text-align: center;
+}
+
+.wrapper {
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+img {
+  /* transform: translate(20, 20); */
+  transform: rotateZ(-180deg) translateY(0px) scale(1);
+}
+
+.circle {
+  width: 100px;
+  padding: 50px 0;
+  line-height: 0;
+  margin: 60px auto;
+  background: var(--bg-secondary);
+  color: var(--text-info);
+  border-radius: 50px;
+  cursor: pointer;
+  /* transition: background 1s, transform 1s 1s linear; */
+  transition: background 1s, transform 2s 1s ease-in;
+}
+
+.circle:hover {
+  background: var(--bg-primary);
+  transform: rotate(360deg);
+}
